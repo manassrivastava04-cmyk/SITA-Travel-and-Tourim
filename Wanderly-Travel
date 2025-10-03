@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wanderly Travel — Explore With Us</title>
+  <style>
+    :root{
+      --accent:#1e90ff;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --bg:#f7fafc;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 6px 18px rgba(16,24,40,0.08);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#f8fbff 0%,var(--bg) 100%);color:#0f172a;line-height:1.45}
+    header{backdrop-filter: blur(6px);position:sticky;top:0;z-index:40;background:rgba(255,255,255,0.7);border-bottom:1px solid rgba(15,23,42,0.04)}
+    .container{max-width:1100px;margin:0 auto;padding:1rem}
+    nav{display:flex;gap:1rem;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700}
+    .brand .logo{width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:grid;place-items:center;color:white;font-weight:800}
+    .menu{display:flex;gap:.6rem}
+    .menu a{padding:.6rem .85rem;border-radius:8px;text-decoration:none;color:var(--muted);font-weight:600}
+    .menu a:hover{color:var(--accent);background:rgba(30,144,255,0.06)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:2rem;align-items:center;padding:3rem 0}
+    .hero h1{font-size:2rem;margin:0 0 .6rem}
+    .hero p{color:var(--muted);margin:0 0 1.2rem}
+    .cta{display:inline-block;padding:.8rem 1.1rem;background:var(--accent);color:white;border-radius:10px;text-decoration:none;font-weight:700;box-shadow:var(--shadow)}
+
+    /* Destinations */
+    .destinations{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:2rem 0}
+    .dest-card{background:linear-gradient(180deg,var(--card),#fbfdff);border-radius:12px;padding:1rem;box-shadow:var(--shadow);display:flex;gap:1rem;align-items:center}
+    .dest-card img{width:80px;height:80px;border-radius:10px;object-fit:cover}
+    .dest-card h4{margin:0}
+
+    /* Packages grid */
+    .packages{margin:2rem 0}
+    .pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+    .pkg{background:var(--card);border-radius:12px;padding:1rem;box-shadow:var(--shadow);overflow:hidden;transition:transform .28s ease,box-shadow .28s ease}
+    .pkg:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(16,24,40,0.12)}
+    .pkg img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    .pkg h3{margin:.6rem 0 .2rem}
+    .price{font-weight:800;color:var(--accent)}
+    .pkg .meta{display:flex;gap:.6rem;align-items:center;color:var(--muted);font-size:.9rem}
+    .pkg .actions{display:flex;gap:.6rem;margin-top:.8rem}
+    .btn{padding:.5rem .7rem;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:var(--accent);color:white}
+    .btn-ghost{background:transparent;border:1px solid rgba(15,23,42,0.06)}
+
+    /* Itinerary video/card */
+    .itinerary{display:grid;grid-template-columns:1fr 360px;gap:1rem;align-items:start}
+    .itinerary iframe,.itinerary video{width:100%;height:260px;border-radius:8px;border:0}
+
+    /* Details/summary styled */
+    details{background:linear-gradient(180deg,rgba(14,165,233,0.03),transparent);padding:.8rem;border-radius:8px}
+    summary{font-weight:700;cursor:pointer;outline:none}
+
+    /* Reviews */
+    blockquote{margin:0;padding:1rem;border-left:4px solid var(--accent);background:#fff;border-radius:8px}
+    .reviews{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+    /* Booking form */
+    form{background:var(--card);padding:1rem;border-radius:12px;box-shadow:var(--shadow)}
+    form .grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+    label{display:block;font-weight:600;margin-bottom:.3rem}
+    input[type="text"],input[type="email"],select,input[type="date"]{width:100%;padding:.6rem;border-radius:8px;border:1px solid rgba(15,23,42,0.08)}
+    .full{grid-column:1/-1}
+    .small{font-size:.9rem;color:var(--muted)}
+
+    footer{padding:2rem 0;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr}
+      .itinerary{grid-template-columns:1fr}
+      .reviews{grid-template-columns:1fr}
+      header .menu{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo">W</div>
+          <div>
+            Wanderly <div style="font-size:12px;color:var(--muted);font-weight:600">Travel & Tourism</div>
+          </div>
+        </div>
+        <div class="menu">
+          <a href="#home">Home</a>
+          <a href="#destinations">Destination</a>
+          <a href="#packages">Package</a>
+          <a href="#booking">Booking Form</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home" class="hero">
+      <div>
+        <h1>Explore Beautiful Places — Tailored Packages, Hassle-free Booking</h1>
+        <p>Hand-picked destinations, transparent pricing and flexible itineraries. Find your next adventure with Wanderly.</p>
+        <a class="cta" href="#packages">View Packages</a>
+        <div style="margin-top:1.2rem;color:var(--muted);font-size:.95rem">Customer rating: ★★★★☆ (4.6/5)</div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="hero" style="width:100%;border-radius:12px;height:260px;object-fit:cover;box-shadow:var(--shadow)">
+      </div>
+    </section>
+
+    <section id="destinations">
+      <h2>Popular Destinations</h2>
+      <div class="destinations">
+        <article class="dest-card"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Bali"><div><h4>Bali, Indonesia</h4><div class="small">Beaches & culture</div></div></article>
+        <article class="dest-card"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Swiss"><div><h4>Swiss Alps</h4><div class="small">Mountains & skiing</div></div></article>
+        <article class="dest-card"><img src="https://images.unsplash.com/photo-1473625247510-8ceb1760943f?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Kyoto"><div><h4>Kyoto, Japan</h4><div class="small">Temples & cuisine</div></div></article>
+        <article class="dest-card"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Paris"><div><h4>Paris, France</h4><div class="small">Art & romance</div></div></article>
+      </div>
+    </section>
+
+    <section id="packages" class="packages">
+      <h2>Featured Packages</h2>
+      <div class="pkg-grid">
+        <article class="pkg">
+          <img src="https://images.unsplash.com/photo-1505765053593-6f6a0319b1f2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="sea escape">
+          <h3>Sunset Beach Escape</h3>
+          <div class="meta">5 days • All meals • Flights included</div>
+          <div style="margin-top:.5rem" class="price">₹29,999</div>
+          <div style="margin-top:.6rem">Discover serene beaches, snorkel in clear waters and enjoy seaside dinners.</div>
+          <div style="margin-top:.8rem" class="actions">
+            <button class="btn btn-primary" onclick="openBooking('Sunset Beach Escape')">Book Now</button>
+            <button class="btn btn-ghost" onclick="toggleItin(0)">View Itinerary</button>
+          </div>
+          <details style="margin-top:.6rem" id="itin-0">
+            <summary>Itinerary summary</summary>
+            <p class="small">Day 1: Arrival & relax. Day 2: Island hopping. Day 3: Leisure & spa. Day 4: Local village tour. Day 5: Departure.</p>
+          </details>
+        </article>
+
+        <article class="pkg">
+          <img src="https://images.unsplash.com/photo-1505764810597-0a1c6b9b0c9e?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="mountain retreat">
+          <h3>Alpine Adventure</h3>
+          <div class="meta">6 days • Guided hikes • Breakfast included</div>
+          <div class="price">₹44,500</div>
+          <div style="margin-top:.6rem">Guided hikes across scenic trails with cosy lodges each night.</div>
+          <div style="margin-top:.8rem" class="actions">
+            <button class="btn btn-primary" onclick="openBooking('Alpine Adventure')">Book Now</button>
+            <button class="btn btn-ghost" onclick="toggleItin(1)">View Itinerary</button>
+          </div>
+          <details style="margin-top:.6rem" id="itin-1">
+            <summary>Itinerary summary</summary>
+            <p class="small">Day 1: Transfer & orientation. Day 2-4: Hikes. Day 5: Summit attempt. Day 6: Departure.</p>
+          </details>
+        </article>
+
+        <article class="pkg">
+          <img src="https://images.unsplash.com/photo-1505765053593-6f6a0319b1f2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="city break">
+          <h3>Heritage City Break</h3>
+          <div class="meta">4 days • Museums & local food tour</div>
+          <div class="price">₹18,700</div>
+          <div style="margin-top:.6rem">Explore history, savour street food and relaxed walking tours.</div>
+          <div style="margin-top:.8rem" class="actions">
+            <button class="btn btn-primary" onclick="openBooking('Heritage City Break')">Book Now</button>
+            <button class="btn btn-ghost" onclick="toggleItin(2)">View Itinerary</button>
+          </div>
+          <details style="margin-top:.6rem" id="itin-2">
+            <summary>Itinerary summary</summary>
+            <p class="small">Day 1: Arrival & evening food walk. Day 2: Old city tour. Day 3: Market & museum. Day 4: Departure.</p>
+          </details>
+        </article>
+      </div>
+
+      <div style="margin-top:1.2rem">
+        <h3>Detailed itinerary (video)</h3>
+        <div class="itinerary">
+          <iframe src="https://www.youtube.com/embed/Scxs7L0vhZ4" title="Itinerary video" allowfullscreen loading="lazy"></iframe>
+
+          <aside>
+            <h4>Why this package?</h4>
+            <p class="small">The itinerary is handcrafted to include the must-see spots while leaving free time to explore at your own pace. Watch the short route video to get a feel for the trip.</p>
+            <details>
+              <summary>Full day-by-day breakdown</summary>
+              <ul class="small">
+                <li>Day 1 — Arrival & welcome dinner</li>
+                <li>Day 2 — Guided sightseeing</li>
+                <li>Day 3 — Optional activities (snorkel, bike)</li>
+                <li>Day 4 — Cultural experience & market visit</li>
+                <li>Day 5 — Departure</li>
+              </ul>
+            </details>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking" style="margin-top:2rem;display:grid;grid-template-columns:1fr 380px;gap:1rem;align-items:start">
+      <div>
+        <h2>Booking Form</h2>
+        <form id="booking-form" onsubmit="submitBooking(event)">
+          <div class="grid">
+            <div>
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="you@example.com">
+            </div>
+            <div>
+              <label for="package">Choose package</label>
+              <select id="package" name="package" required>
+                <option value="">-- Select a package --</option>
+                <option>Sunset Beach Escape</option>
+                <option>Alpine Adventure</option>
+                <option>Heritage City Break</option>
+              </select>
+            </div>
+            <div>
+              <label for="travel-date">Preferred start date</label>
+              <input type="date" id="travel-date" name="date" required>
+            </div>
+            <div class="full">
+              <label>Extras</label>
+              <label><input type="checkbox" name="extras" value="airport" checked> Airport pickup</label>
+              <label><input type="checkbox" name="extras" value="insurance"> Travel insurance</label>
+              <label><input type="checkbox" name="extras" value="veg"> Vegetarian meals</label>
+            </div>
+            <div class="full">
+              <label for="notes">Special requests (optional)</label>
+              <input type="text" id="notes" name="notes" placeholder="Any dietary or accessibility needs">
+            </div>
+          </div>
+
+          <div style="margin-top:.8rem;display:flex;gap:.6rem;align-items:center">
+            <button type="submit" class="btn btn-primary">Confirm Booking</button>
+            <div class="small">By booking you agree to our <a href="#">terms</a>.</div>
+          </div>
+        </form>
+
+        <div id="confirmation" style="display:none;margin-top:1rem;padding:1rem;background:#ecfdf5;border-radius:8px;border:1px solid rgba(16,185,129,0.12)"></div>
+      </div>
+
+      <aside>
+        <h3>Customer reviews</h3>
+        <div class="reviews">
+          <blockquote>
+            "Amazing experience — the guides were friendly and the itinerary was perfect for our family."<br><strong>- Kunal M.</strong>
+          </blockquote>
+          <blockquote>
+            "Great value for money. Will book again next year!"<br><strong>- Hemant kumar.</strong>
+          </blockquote>
+        </div>
+
+        <div style="margin-top:1rem">
+          <h4>Quick contact</h4>
+          <p class="small">Call us: +91 9381228259<br>Email: manas14srivastava04@gmail.com</p>
+        </div>
+      </aside>
+    </section>
+
+    <footer style="margin-top:2.5rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+        <div>
+          <strong>Wanderly</strong> — © <span id="year"></span>
+        </div>
+        <div class="small"> Built for demonstration purposes.</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function toggleItin(i){
+      const d = document.getElementById('itin-'+i);
+      if(d){ d.open = !d.open }
+    }
+
+    function openBooking(pkg){
+      document.querySelector('#packages [selected]')?.removeAttribute('selected');
+      const sel = document.getElementById('package');
+      for(const opt of sel.options){ if(opt.value===pkg) opt.selected=true }
+      window.location.hash = '#booking';
+      document.getElementById('name').focus();
+    }
+
+    function submitBooking(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const details = {
+        name: data.get('name'),
+        email: data.get('email'),
+        package: data.get('package'),
+        date: data.get('date'),
+        extras: data.getAll('extras'),
+        notes: data.get('notes')
+      };
+      const conf = document.getElementById('confirmation');
+      conf.style.display='block';
+      conf.innerHTML = `<strong>Thanks, ${escapeHtml(details.name)}!</strong> Your booking request for <em>${escapeHtml(details.package)}</em> on <strong>${escapeHtml(details.date)}</strong> has been received. We'll contact you at <strong>${escapeHtml(details.email)}</strong>.`;
+      form.reset();
+    }
+
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]) }) }
+  </script>
+</body>
+</html>
